@@ -212,12 +212,11 @@ public class RuleMaker {
 	{
 		Set<Relation> relationMapping2Keys = relationMapping2.keySet();
                 Set<Relation> relationMapping1Keys = relationMapping1.keySet();
-                /*if(relationMapping2Keys.isEmpty())
+                if(relationMapping2Keys.isEmpty())
                 {
                     System.out.println("Cannot find any useful inferences\n");
                     return false;
-                }
-                */
+                }             
                 
                 for(Relation relation2 : relationMapping2Keys)
 		{
