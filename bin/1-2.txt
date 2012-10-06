@@ -1,0 +1,99 @@
+/*
+Conventions followed in the propositional representation
+---------------------------------------------------------
+
+Every problem in the Miller's test consist of two matrices. 
+Matrix 1 will have several "frames", with an implicit relation 
+existing between each frame. Matrix 2 will also have the same
+number of frames, with one missing frame which needs to be chosen
+from the options. Each frame will consist of a finite number of
+"shapes" with certain attributes (type, color etc.,). The relations
+that exist between the shapes of each frame in Matrix 1 should 
+correspond to the shapes of each frame in Matrix 2. Thus the option which
+satisfies this requirement will be chosen.
+
+Syntax
+------
+
+Each line will be a key-value pair (separated by a ":"), with the keys as follows:
+
+<<Matrix>>: Container for listing the frames in that portion of the figure
+	<<MatrixId>>: Whose value is either 1 or 2.
+			   1 = Matrix given in the question with all the frames known.
+			   2 = The incomplete matrix with a missing frame.
+			   3 = A pseudo matrix with the frames in the answer choices.
+<<Frame>>: Container for the shapes and shape information.
+	<<FrameName>>: Whose value is a name associated with that frame, obtained from the question.
+	<<Shapes>>: Contains a list of shapes present in the frame, separated by a space. 
+				Each shape is given an identifier like Circle1, Circle2, Line1, Rectangle1 etc.,
+				In general <TypeOfShape><UniqueIdForThatShape>.
+				The UniqueId for a shape will be incremental starting from 1.
+	<<Frame-Relation>>: A comma-separated list that describes the relation 
+						between the shapes in that frame. 
+						It is in the form of a triplet <Shape1> "<Relation>" <Shape2>. 
+						If needed the representation may vary as <Shape1> "<Relation>" <Frame>, which describes the shape relative to that frame.
+						It is possible to not have an empty frame-relation for certain problems.
+						The relation is described within quotes in English, using phrases like "Left of", "Right of", "Top of" and so on.
+						
+The Frame-Relation would be an ordered pair, whose order will be maintained across frames provided the shapes appearing in the relation
+of one frame also appear in the relation of another. Otherwise the relation will be canonically changed, and the program will infer the 
+loss/addition of new shapes in a frame.
+
+Goal of the algorithm
+----------------------
+		
+Based on the intra-frame relations of the shapes in this file, infer the inter-frame relationship in matrix 1 (intra-matrix relationship). 
+From among the frames in the answer choices, choose the one which will result in the same inter-frame relationship
+in matrix 2.	
+
+*/
+
+<<Matrix>>
+<<MatrixId>>:1
+<<Frame>>
+<<FrameName>>:A
+<<Shapes>>:Dot1 Triangle1 Rectangle1
+<<Frame-Relation>>:Dot1 "LeftOf" Triangle1,Dot1 "TopOf" Triangle1,Dot1 "OutsideOf" Triangle1,Rectangle1 "InsideOf" Triangle1
+<<EndFrame>>
+<<Frame>>
+<<FrameName>>:B
+<<Shapes>>:Triangle1 Rectangle1
+<<Frame-Relation>>:Rectangle1 "OutsideOf" Triangle1,Rectangle1 "LeftOf" Triangle1
+<<EndFrame>>
+<<EndMatrix>>
+<<Matrix>>
+<<MatrixId>>:2
+<<Frame>> 
+<<FrameName>>:C
+<<Shapes>>:Dot1 Polygon1 LetterZ1
+<<Frame-Relation>>:Dot1 "RightOf Polygon1,Dot1 "TopOf" Polygon1,Dot1 "OutsideOf" Polygon1,LetterZ1 "InsideOf" Polygon1
+<<EndFrame>>
+<<EndMatrix>>
+<<Matrix>>
+<<MatrixId>>:3
+<<Frame>>
+<<FrameName>>:1
+<<Shapes>>:Dot1 Polygon1 LetterZ1
+<<Frame-Relation>>:Dot1 "LeftOf Polygon1,Dot1 "TopOf" Polygon1,Dot1 "OutsideOf" Polygon1,LetterZ1 "InsideOf" Polygon1
+<<EndFrame>>
+<<Frame>>
+<<FrameName>>:2
+<<Shapes>>:Polygon1 LetterZ1
+<<Frame-Relation>>:LetterZ1 "OutsideOf" Polygon1,LetterZ1 "LeftOf" Triangle1
+<<EndFrame>>
+<<Frame>>
+<<FrameName>>:3
+<<Shapes>>:Polygon1 LetterZ1
+<<Frame-Relation>>:LetterZ1 "InsideOf" Polygon1
+<<EndFrame>>
+<<Frame>>
+<<FrameName>>:4
+<<Shapes>>:Dot1 Polygon1
+<<Frame-Relation>>:Dot1 "RightOf Polygon1,Dot1 "TopOf" Polygon1,Dot1 "OutsideOf" Polygon1
+<<EndFrame>>
+<<Frame>>
+<<FrameName>>:5
+<<Shapes>>:LetterZ1
+<<Frame-Relation>>:
+<<EndFrame>>
+<<EndMatrix>>
