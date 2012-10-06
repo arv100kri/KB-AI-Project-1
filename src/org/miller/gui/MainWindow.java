@@ -55,7 +55,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         question4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        question4.setText("Question 4 (TBA)");
+        question4.setText("Question 4");
         question4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 question4ActionPerformed(evt);
