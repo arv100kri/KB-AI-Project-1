@@ -1,19 +1,19 @@
 package org.miller.utilities;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+/**
+ *
+ * @author Arvind Krishnaa Jagannathan
+ */
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.miller.definitions.Frame;
 import org.miller.definitions.Matrix;
 import org.miller.definitions.Relation;
 import org.miller.definitions.Shape;
 
 /*
+ * Class to perform simple parsing of a text file, and obtain the shapes and relations of a frame
+ * 
  * The purpose of this class is to read the propositional representation text file
  * and construct the matrix objects from the raw input.
  * Each matrix object will consist of a set of frames, and each frame a set of shapes
@@ -40,20 +40,33 @@ public class SimplePropositionalRepresentationParser {
 		//singleton
 	}
 	
+        /*
+         * Return a single instance of the SimpleParser
+         * @return The static instance of type SimplePropositionalRepresentationParser
+         */
+        
 	public static SimplePropositionalRepresentationParser getInstance()
 	{
 		return s_instance;
 	}
 	
 	/*
-	 * Returns a two-element list
-	 * Element[0] = Matrix 1
-	 * Element[1] = Matrix 2
+         * Function to parse the text file, and classify the various frames into two matrices
+         * 
+         * De-serializes the text file into a user-defined Java Object Matrix
+         * 
+	 * @return a two-element matrix list
+         * Element[0] = Matrix 1 Representing the frames in the question
+	 * Element[1] = Matrix 2 Representing the frames which might be the answer
+         * 
+         * @param fileName The name of the text file which needs to be parsed
 	 */
 	public List<Matrix> parseTextFile(String FileName) throws IOException
 	{
 		List<Matrix> matrices = new ArrayList<Matrix>();
 		String actualPath = path_prefix + FileName;
+                File f = new File(".");
+		System.out.println(f.getCanonicalPath());
 		FileInputStream fileInputStream = new FileInputStream(actualPath);
 		BufferedReader br = new BufferedReader(new InputStreamReader(new DataInputStream(fileInputStream)));
 		String line="";

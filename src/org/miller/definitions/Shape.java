@@ -1,22 +1,48 @@
 package org.miller.definitions;
+/*
+ * @author Arvind Krishnaa Jagannathan
+ */
 
+/*
+ * Combines the attributes of a shape into a class
+ */
 public class Shape 
 {
 	private String type;
 	private int Id;
 	
+        /*
+         * Returns the shape type
+         * @return The shape type
+         */
 	public String getType() {
 		return type;
 	}
-	public void setType(String type) {
+	
+        /*
+         * Sets the type of the shape
+         * @param type The shape's type
+         */
+        public void setType(String type) {
 		this.type = type;
 	}
-	public int getId() {
+
+        /*
+         * Returns the shape identifier
+         * @return The shape identifier
+         */
+        public int getId() {
 		return Id;
 	}
-	public void setId(int id) {
+        
+	/*
+         * Sets the identifier of the shape
+         * @param type The shape's identifier
+         */
+        public void setId(int id) {
 		Id = id;
 	}
+        
 	@Override
 	public String toString() {
 		return type + Id;
@@ -49,8 +75,4 @@ public class Shape
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 }

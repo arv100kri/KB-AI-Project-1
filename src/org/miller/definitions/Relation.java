@@ -1,27 +1,65 @@
 package org.miller.definitions;
-
+/*
+ * @author Arvind Krishnaa Jagannathan
+ */
+/*
+ * A class to represent a relation between two shapes
+ * It is an ordered pair <shape1><shape2><relation>
+ */
 public class Relation {
 	private Shape Shape1, Shape2;
 	private String relationship;
 	
+        /*
+         * Returns the first shape in the relation
+         * @return First shape
+         */
 	public Shape getShape1() {
 		return Shape1;
 	}
-	public void setShape1(Shape shape1) {
+	
+        /*
+         * Set the value of the first shape
+         * @param shape1 The value of the first shape
+         */
+        public void setShape1(Shape shape1) {
 		Shape1 = shape1;
 	}
-	public Shape getShape2() {
+	
+        /*
+         * Returns the second shape in the relation
+         * @return Second shape
+         */
+        public Shape getShape2() {
 		return Shape2;
 	}
-	public void setShape2(Shape shape2) {
+	
+        /*
+         * Set the value of the second shape
+         * @param shape2 The value of the second shape
+         */
+        
+        public void setShape2(Shape shape2) {
 		Shape2 = shape2;
 	}
+        
+        /*
+         * Returns the value of the relation between the shapes
+         * @return The relationship between shape1 and shape2
+        */
 	public String getRelationship() {
 		return relationship;
 	}
-	public void setRelationship(String relationship) {
+	
+        /*
+         * Set the value of the relation between the shapes
+         * @param relationship The string representation of their relation. Can be "leftOf", "rightOf" and so on
+         */
+        
+        public void setRelationship(String relationship) {
 		this.relationship = relationship;
 	}
+        
 	@Override
 	public String toString() {
 		return Shape1 + " '" + relationship + "' " + Shape2;
@@ -63,9 +101,4 @@ public class Relation {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-
 }
